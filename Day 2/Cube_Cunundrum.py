@@ -1,9 +1,10 @@
 def main():
-    with open('Day 1\calibration document.txt') as doc:
+    with open('Day 2\game.txt') as doc:
         doc = doc.readlines()
         doc[-1] += '\n'
     
-    print(doc)
+    for game in doc:
+        print(game)
 
 
 if __name__ == "__main__":

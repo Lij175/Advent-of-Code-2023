@@ -1,6 +1,6 @@
 def main():
     #only 12 red cubes, 13 green cubes, and 14 blue cubes
-    with open('Day 2\\full game.txt') as doc:
+    with open('Day 2 - Cube Conundrum\\full game.txt') as doc:
         doc = doc.readlines()
 
     part1(doc)

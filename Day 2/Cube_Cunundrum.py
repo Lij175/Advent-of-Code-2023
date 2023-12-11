@@ -3,7 +3,8 @@ def main():
         doc = doc.readlines()
         doc[-1] += '\n'
     
-    for game in doc:
+    for line in doc:
+        game = game(line)
         print(game)
 
 

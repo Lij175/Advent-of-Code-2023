@@ -1,7 +1,7 @@
 
 
 def main():
-    with open('Day 1\calibration document.txt') as doc:
+    with open('Day 1\\calibration document.txt') as doc:
         doc = doc.readlines()
         doc[-1] += '\n'
    

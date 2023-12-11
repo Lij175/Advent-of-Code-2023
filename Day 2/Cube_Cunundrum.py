@@ -1,10 +1,13 @@
+import game
+
 def main():
-    with open('Day 2\game.txt') as doc:
+    # the bag contained only 12 red cubes, 13 green cubes, and 14 blue cubes
+    with open('Day 2\\test game.txt') as doc:
         doc = doc.readlines()
         doc[-1] += '\n'
     
     for game in doc:
-        print(game)
+        pass
 
 
 if __name__ == "__main__":

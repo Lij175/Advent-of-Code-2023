@@ -8,6 +8,18 @@ def main():
     print(part1(doc))
     print(part2(doc))
 
+    # Initialize the sum of calibration values
+    total_calibration_sum = 0
+    # Iterate through each line in the calibration document
+    for line in doc:
+        # Extract the calibration value for the current line
+        calibration_value = extract_calibration_values(line)
+
+        # Add the calibration value to the total sum
+        total_calibration_sum += calibration_value
+    
+    print(total_calibration_sum)
+
 
 def part2(doc):
     valid_digits = {'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}
@@ -49,8 +61,6 @@ def part2(doc):
     return value
         
 
-
-
 def part1(doc):
     value = 0
     for line in doc:
@@ -67,6 +77,28 @@ def part1(doc):
     
     return value
 
+def is_digit(char):
+    # Check if the character is a digit
+    return '0' <= char <= '9'
+
+def extract_calibration_values(line):
+    # Find the first digit in the line
+    for char in line:
+        if is_digit(char):
+            first_digit = int(char)
+            break
+
+    # Find the last digit in the line
+    for char in line[::-1]:
+        if is_digit(char):
+            last_digit = int(char)
+            break
+
+    # Combine the first and last digits to form a two-digit number
+    calibration_value = first_digit * 10 + last_digit
+    return calibration_value
+
 
 if __name__ == "__main__":
     main()
+

@@ -3,7 +3,7 @@ def main():
     with open('Day 2\\full game.txt') as doc:
         doc = doc.readlines()
 
-    #part1(doc)
+    part1(doc)
     part2(doc)
     
 
@@ -16,34 +16,33 @@ def part1(doc):
         game = game_obj(line)
         breaked = False
         for draw in game.get_draws():
-            print(draw)
+            # print(draw)
             for key, value in draw.items():
                 if value > bag[key]:
-                    print(game.get_num())
+                    # print(game.get_num())
                     game_ID -= game.get_num()
                     breaked = True
                     break
             if breaked:
                 break
-        print()
+        # print()
     
     print(game_ID)
 
 
 def part2(doc):
     power = 0
-    game_ID = int((len(doc) * (1 + len(doc))) / 2)
     for line in doc:
         line = line.strip()
         game = game_obj(line)
         bag = {'red': 0, 'green': 0, 'blue': 0}
         for draw in game.get_draws():
-            print(draw)
+            # print(draw)
             for key, value in draw.items():
                 if value > bag[key]:
                     bag[key] = value
         power += bag['red'] * bag['green'] * bag['blue']
-        print(bag['red'] * bag['green'] * bag['blue'])
+        # print(bag['red'] * bag['green'] * bag['blue'])
     
     print(power)
 

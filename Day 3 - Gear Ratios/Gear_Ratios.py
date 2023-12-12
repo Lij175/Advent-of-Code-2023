@@ -11,14 +11,54 @@ def main():
         schematic.append(list_of_line)
     schematic.append(['.' for n in range(len(doc[0]) + 1)])
     
+    '''
+    for line in schematic:
+        print(''.join(line))
+    '''
+
     part1(schematic)
     part2(schematic)
 
 
 def part2(schematic):
-    for line in schematic:
-        print(''.join(line))
+    schemadictionary = dict() # key: 'row:col' <> value: [symbol, 0: '.' -1: '*', -2: num(temporary)]
+    for row in range(len(schematic)):
+        for col in range(len(schematic[row])):
+            curr = schematic[row][col]
+            schemadictionary[f'{row}:{col}'] = 0
     
+
+    num = 0
+    num_loc = list()
+    for row in range(len(schematic)):
+        for col in range(len(schematic[row])):
+            if schematic[row][col] in '1234567890':
+                num = num * 10 + int(schematic[row][col])
+                num_loc.append([row, col])
+            elif num != 0:
+                for index in num_loc:
+                    row, col = index
+                    schemadictionary[f'{row}:{col}'] = num
+                num = 0
+                num_loc.clear()
+    '''
+    for row in range(len(schematic)):
+        for col in range(len(schematic[row])):
+            print(schemadictionary[f'{row}:{col}'], end= '')
+        print()
+    '''
+    
+    sum = 0
+    for row in range(len(schematic)):
+        for col in range(len(schematic[row])):
+            if schematic[row][col] == '*':
+                sum += find_gear_ratio([row,col], schemadictionary)
+            
+
+def find_gear_ratio(loc, schemadictionary):
+    return 1
+
+            
 
 
 

@@ -1,5 +1,5 @@
 def main():
-    with open('Day 3 - Gear Ratios\\smol schematic.txt') as doc:
+    with open('Day 3 - Gear Ratios\\engine schematic.txt') as doc:
         doc = doc.readlines()
     schematic = [['.' for n in range(len(doc[0]) + 1)]]
     for line in doc:
@@ -44,7 +44,7 @@ def part2(schematic):
     '''
     for row in range(len(schematic)):
         for col in range(len(schematic[row])):
-            print(schemadictionary[f'{row}:{col}'], end= '')
+            print(schematic[row][col], end= '')
         print()
     '''
     
@@ -53,10 +53,42 @@ def part2(schematic):
         for col in range(len(schematic[row])):
             if schematic[row][col] == '*':
                 sum += find_gear_ratio([row,col], schemadictionary)
+    
+    print(sum)
             
 
 def find_gear_ratio(loc, schemadictionary):
-    return 1
+    nums = []
+    row, col = loc
+    nums.append(schemadictionary[f'{row-1}:{col-1}'])
+    if schemadictionary[f'{row-1}:{col}'] != schemadictionary[f'{row-1}:{col-1}']:
+        nums.append(schemadictionary[f'{row-1}:{col}'])
+    if schemadictionary[f'{row-1}:{col+1}'] != schemadictionary[f'{row-1}:{col}']:
+        nums.append(schemadictionary[f'{row-1}:{col+1}'])
+
+    nums.append(schemadictionary[f'{row}:{col-1}'])
+    nums.append(schemadictionary[f'{row}:{col+1}'])
+    
+    nums.append(schemadictionary[f'{row+1}:{col-1}'])
+    if schemadictionary[f'{row+1}:{col}'] != schemadictionary[f'{row+1}:{col-1}']:
+        nums.append(schemadictionary[f'{row+1}:{col}'])
+    if schemadictionary[f'{row+1}:{col+1}'] != schemadictionary[f'{row+1}:{col}']:
+        nums.append(schemadictionary[f'{row+1}:{col+1}'])
+    
+    nums2 = []
+    for num in nums:
+        if num != 0:
+            nums2.append(num)
+
+    if len(nums2) > 2 or len(nums2) < 2:
+        return 0
+    else:
+        ratio = 1
+        for num in nums2:
+            ratio *= num
+        # print(ratio)
+        return ratio
+    
 
             
 

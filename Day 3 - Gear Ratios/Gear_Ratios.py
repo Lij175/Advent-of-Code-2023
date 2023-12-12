@@ -1,5 +1,5 @@
 def main():
-    with open('Day 3 - Gear Ratios\engine schematic.txt') as doc:
+    with open('Day 3 - Gear Ratios\\smol schematic.txt') as doc:
         doc = doc.readlines()
     schematic = [['.' for n in range(len(doc[0]) + 1)]]
     for line in doc:
@@ -11,11 +11,17 @@ def main():
         schematic.append(list_of_line)
     schematic.append(['.' for n in range(len(doc[0]) + 1)])
     
-    '''
+    part1(schematic)
+    part2(schematic)
+
+
+def part2(schematic):
     for line in schematic:
         print(''.join(line))
-    '''
-    part1(schematic)
+    
+
+
+
 
 
 def part1(schematic):
